@@ -29,7 +29,7 @@ function drawBird() {
 }
 
 function drawObstacles() {
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "green";
     for (let i = 0; i < obstacles.length; i++) {
         ctx.fillRect(obstacles[i].x, 0, obstacleWidth, obstacles[i].topHeight);
         ctx.fillRect(obstacles[i].x, obstacles[i].bottomY, obstacleWidth, obstacles[i].bottomHeight);
