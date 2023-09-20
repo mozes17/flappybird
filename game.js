@@ -14,7 +14,7 @@ const bird = {
 };
 
 // Betöltjük a madár képét
-bird.image.src = "bird.png";
+bird.image.src = "Bird.png";
 
 // Akadályok beállításai
 const obstacles = [];
