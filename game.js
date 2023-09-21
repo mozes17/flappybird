@@ -43,6 +43,7 @@ function collisionDetection() {
             bird.x < obstacles[i].x + obstacleWidth &&
             (bird.y < obstacles[i].topHeight || bird.y + bird.height > obstacles[i].bottomY)
         ) {
+            gameOver();
             return true;
         }
     }
@@ -55,13 +56,21 @@ function updateScore() {
     ctx.fillText("Score: " + score, 20, 30);
 }
 
+function gameOver() {
+    alert("Game Over! Score: " + score);
+    restartGame();
+}
+
+function restartGame() {
+    score = 0;
+    bird.y = canvas.height / 2;
+    obstacles.length = 0;
+    bird.speed = 5;
+    gameLoop();
+}
+
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    if (collisionDetection()) {
-        alert("Game Over! Score: " + score);
-        document.location.reload();
-    }
 
     bird.y += bird.speed;
     bird.speed += bird.gravity;
@@ -95,7 +104,9 @@ function gameLoop() {
     drawObstacles();
     updateScore();
 
-    requestAnimationFrame(gameLoop);
+    if (!collisionDetection()) {
+        requestAnimationFrame(gameLoop);
+    }
 }
 
 document.addEventListener("keydown", function (e) {
